@@ -14,9 +14,13 @@ namespace HoloToolkit.Unity.ControllerExamples
     public class SpeedMeter : AttachToController, IPointerTarget
     {
         private Vector2 selectorPosition;
+        private GameObject player;
+        private MoveCtrl player_move_script;
+        private float playerSpeed;
+        private bool previousGraspedCondition = false;
 
         private void Update()
-        {}
+        { }
 
         protected override void OnAttachToController()
         {
@@ -42,11 +46,28 @@ namespace HoloToolkit.Unity.ControllerExamples
 #if UNITY_WSA && UNITY_2017_2_OR_NEWER
         private void InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
         {
-            if (obj.state.source.handedness == Handedness)
+            if (obj.state.source.handedness == Handedness & obj.state.grasped & !previousGraspedCondition)
             {
                 Debug.Log("grasped:" + obj.state.grasped);
+                previousGraspedCondition = true;
             }
-        }
+
+            if (obj.state.source.handedness == Handedness & !obj.state.grasped & previousGraspedCondition)
+            {
+                Debug.Log("grasped:" + obj.state.grasped);
+
+                player = GameObject.Find("Player - MRCP");
+                //Debug.Log("player: " + player);
+                player_move_script = player.GetComponent<MoveCtrl>();
+                
+                if (player_move_script.moveSpeed == 0)
+                    player_move_script.moveSpeed = 1.0f;
+                else
+                    player_move_script.moveSpeed = 0.0f;
+
+                previousGraspedCondition = false;
+            }
 #endif
+        }
     }
 }

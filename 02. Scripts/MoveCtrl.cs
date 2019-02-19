@@ -31,7 +31,7 @@ public class MoveCtrl : MonoBehaviour {
         tr = GetComponent<Transform>();
         camTr = Camera.main.GetComponent<Transform>();
         prepos = camTr.position;
-        Debug.Log("pre: " + prepos);
+        //Debug.Log("pre: " + prepos);
         cc = GetComponent<CharacterController>();
         
         points = GameObject.Find("WayPointGroup").GetComponentsInChildren<Transform>();
@@ -52,7 +52,7 @@ public class MoveCtrl : MonoBehaviour {
 		}
 
         curpos = camTr.position;
-        Debug.Log("cur: " + curpos);
+        //Debug.Log("cur: " + curpos);
     }
 
     private void LateUpdate()
