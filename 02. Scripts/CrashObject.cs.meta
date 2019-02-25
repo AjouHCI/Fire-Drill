@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f4142a63c09e57f4d840c72cc84d2216
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - DoorLeft: {instanceID: 0}
+  - DoorRight: {instanceID: 0}
+  - expSfx: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
